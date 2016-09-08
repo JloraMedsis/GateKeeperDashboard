@@ -1,0 +1,16 @@
+﻿.thumbnail img
+{
+    width: 310px;
+    height: 310px;
+}
+
+.Light header
+{
+    height:40px;
+    background: black;
+}
+
+body.Light
+{
+    background-color:azure;
+}
