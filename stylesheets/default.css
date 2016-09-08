@@ -1,0 +1,29 @@
+﻿.thumbnail img
+{
+    width: 310px;
+    height: 310px;
+}
+
+li.thumbnail
+{
+    display: inline-block;
+}
+
+header
+{
+    height:55px;
+    background: black;
+}
+
+.contentWrapper
+{
+    margin-top: 70px;
+}
+
+.brand img
+{
+    max-height: 20px; 
+    margin-top: -2px; 
+    margin-right: 5px;  
+    vertical-align: middle
+}

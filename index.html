@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html ng-app='app' ng-controller="MainCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>GateKeeper Dashboard</title>
+    <link rel="stylesheet" ng-href="stylesheets/{{selectedTheme}}.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.12.0/angular-translate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.1.0/angular-translate-loader-static-files.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-cookie/2.12.0/angular-translate-storage-cookie.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-local/2.12.0/angular-translate-storage-local.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-handler-log/2.12.0/angular-translate-handler-log.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-dynamic-locale/0.1.32/tmhDynamicLocale.min.js"></script>
+    
+    <script src="scripts/angular-css-injector.min.js"></script>
+    <script src="scripts/touchpunch.js"></script>    
+    <script src="scripts/angular-dragdrop.min.js"></script>    
+    <link rel="stylesheet" href="stylesheets/default.css">
+    <script src="index.js"></script>
+    <script src="services/LocaleService.js"></script>
+    <script src="directives/LanguageSelectDirective.js"></script>
+</head>
+<body class="{{selectedTheme}}">
+    <header class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a class="brand" href="?">
+                            <img src="http://104.196.34.106/img/logo.jpg">
+                            <img src="http://104.196.34.106/img/main_logo.png">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{"Theme" | translate}} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="theme in themes"><a ng-click="GetSelectedTheme(theme)">{{theme.theme}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{"directives.language-select.Language" | translate}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="localeDisplayName in localesDisplayNames"><a ng-click="changeLanguage(localeDisplayName)">{{localeDisplayName}}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a ng-click="LogOut()">{{"LogOut" | translate}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class='contentWrapper'>
+        <div class='content'>
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    <li class="thumbnail hthumbnail" ng-repeat="item in draggableObjects | orderBy: 'index'" data-drop="true" data-drag="true" ng-model="draggableObjects" jqyoui-droppable="{index: {{$index}}, onDrop: 'DropEvent'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection', onDrag: 'DragStart'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
+                        <a href="{{item.link}}"><img ng-src="{{item.image}}" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
